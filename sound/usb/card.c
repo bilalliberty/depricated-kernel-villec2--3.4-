@@ -697,7 +697,9 @@ static int __init snd_usb_audio_init(void)
 	}
 
 	usbaudiosdev = kzalloc(sizeof(usbaudiosdev), GFP_KERNEL);
-	usbaudiosdev->name = "usb_audio_class";
+	#ifdef CONFIG_HTC_HEADSET_MGR
+  usbaudiosdev->name = "usb_audio_class";
+        #else
 
 	err = switch_dev_register(usbaudiosdev);
 	if (err)
