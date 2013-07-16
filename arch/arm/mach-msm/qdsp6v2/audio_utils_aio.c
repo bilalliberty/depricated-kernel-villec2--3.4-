@@ -1007,7 +1007,7 @@ static int audio_aio_buf_add(struct q6audio_aio *audio, unsigned dir,
 		}
 		
 		/* No flush in progress */
-+		if (!audio->eos_rsp && !audio->rflush) {
+		if (!audio->eos_rsp && !audio->rflush) {
 			spin_lock_irqsave(&audio->dsp_lock, flags);
 			audio_aio_async_read(audio, buf_node);
 			
