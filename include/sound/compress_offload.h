@@ -28,7 +28,7 @@
 #include <linux/types.h>
 #include <sound/asound.h>
 #include "compress_params.h"
-
+#define SNDRV_COMPRESS_METADATA_MODE          _IOW('C', 0x99, bool)
 
 #define SNDRV_COMPRESS_VERSION SNDRV_PROTOCOL_VERSION(0, 1, 0)
 struct snd_compressed_buffer {
