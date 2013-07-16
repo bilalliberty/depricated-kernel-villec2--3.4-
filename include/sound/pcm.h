@@ -37,7 +37,10 @@
 #if defined(CONFIG_SND_PCM_OSS) || defined(CONFIG_SND_PCM_OSS_MODULE)
 #include "pcm_oss.h"
 #endif
-
+#define SNDRV_DMA_MODE          (0)
+#define SNDRV_NON_DMA_MODE      (1 << 0)
+#define SNDRV_RENDER_STOPPED    (1 << 1)
+#define SNDRV_RENDER_RUNNING    (1 << 2)
 
 struct snd_pcm_hardware {
 	unsigned int info;		
@@ -77,6 +80,7 @@ struct snd_pcm_ops {
 			     unsigned long offset);
 	int (*mmap)(struct snd_pcm_substream *substream, struct vm_area_struct *vma);
 	int (*ack)(struct snd_pcm_substream *substream);
+	int (*restart)(struct snd_pcm_substream *substream);
 };
 
 
@@ -293,6 +297,7 @@ struct snd_pcm_runtime {
 	unsigned int rate_num;
 	unsigned int rate_den;
 	unsigned int no_period_wakeup: 1;
+	unsigned int render_flag;
 
 	
 	int tstamp_mode;		
