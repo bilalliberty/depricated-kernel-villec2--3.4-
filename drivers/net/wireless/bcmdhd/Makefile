@@ -1,4 +1,3 @@
-
 #bcm4330
 
 #DHDCFLAGS = -DLINUX -DBCMDRIVER -DBCMDONGLEHOST -DDHDTHREAD -DBCMWPA2         \
@@ -48,7 +47,7 @@ DHDOFILES = dhd_linux.o linux_osl.o bcmutils.o dhd_common.o dhd_custom_gpio.o \
 #ifdef P2P
 DHDOFILES += wl_linux_mon.o wl_cfg80211.o wl_cfgp2p.o
 #endif
-	
+
 
 
 
