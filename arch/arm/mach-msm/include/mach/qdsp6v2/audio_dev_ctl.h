@@ -58,6 +58,11 @@ struct msm_snddev_info {
 	s32 max_voc_rx_vol[VOC_RX_VOL_ARRAY_NUM]; 
 	s32 min_voc_rx_vol[VOC_RX_VOL_ARRAY_NUM];
 };
+struct dev_ctrl_ops {
+	int (*support_opendsp) (void);
+};
+
+void htc_8x60_register_dev_ctrl_ops(struct dev_ctrl_ops *ops);
 
 struct msm_volume {
 	int volume; 

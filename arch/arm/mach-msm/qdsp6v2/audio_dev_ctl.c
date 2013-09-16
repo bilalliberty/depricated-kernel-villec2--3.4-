@@ -1770,5 +1770,6 @@ static void __exit audio_dev_ctrl_exit(void)
 module_init(audio_dev_ctrl_init);
 module_exit(audio_dev_ctrl_exit);
 
+
 MODULE_DESCRIPTION("MSM 8K Audio Device Control driver");
 MODULE_LICENSE("GPL v2");

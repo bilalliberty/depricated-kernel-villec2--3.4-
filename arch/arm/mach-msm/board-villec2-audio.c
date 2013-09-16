@@ -35,8 +35,7 @@
 
 #define PM8058_GPIO_BASE					NR_MSM_GPIOS
 #define PM8058_GPIO_PM_TO_SYS(pm_gpio)		(pm_gpio + PM8058_GPIO_BASE)
-void htc_8x60_register_analog_ops(struct q6v2audio_analog_ops *ops);
-void htc_8x60_register_icodec_ops(struct q6v2audio_icodec_ops *ops);
+
 static struct mutex bt_sco_lock;
 static struct mutex mic_lock;
 static atomic_t q6_effect_mode = ATOMIC_INIT(-1);
@@ -390,21 +389,19 @@ static struct q6asm_ops qops = {
 void __init villec2_audio_init(void)
 {
 	int i = 0;
-        mutex_init(&bt_sco_lock);
+	mutex_init(&bt_sco_lock);
 	mutex_init(&mic_lock);
 
 	pr_aud_info("%s\n", __func__);
-        htc_8x60_register_ecodec_ops(&eops);
 	htc_8x60_register_analog_ops(&ops);
+	htc_8x60_register_ecodec_ops(&eops);
 	htc_8x60_register_icodec_ops(&iops);
-        htc_8x60_register_dev_ctrl_ops(&dops);
+	htc_8x60_register_dev_ctrl_ops(&dops);
 	htc_register_q6asm_ops(&qops);
 	acoustic_register_ops(&acoustic);
 
-	
+	/* PMIC GPIO Init (See board-villec2.c) */
 	for (i = 0 ; i < ARRAY_SIZE(msm_snddev_gpio); i++)
 		gpio_tlmm_config(msm_snddev_gpio[i], GPIO_CFG_DISABLE);
-
-	
 }
 
