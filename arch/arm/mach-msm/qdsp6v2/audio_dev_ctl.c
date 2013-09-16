@@ -36,7 +36,13 @@
 #define pr_info(fmt, ...) pr_aud_info(fmt, ##__VA_ARGS__)
 #define pr_err(fmt, ...) pr_aud_err(fmt, ##__VA_ARGS__)
 #endif
+static struct dev_ctrl_ops default_ctrl_ops;
+static struct dev_ctrl_ops *ctrl_ops = &default_ctrl_ops;
 
+void htc_8x60_register_dev_ctrl_ops(struct dev_ctrl_ops *ops)
+{
+	ctrl_ops = ops;
+}
 static DEFINE_MUTEX(session_lock);
 static struct workqueue_struct *msm_reset_device_work_queue;
 static void reset_device_work(struct work_struct *work);

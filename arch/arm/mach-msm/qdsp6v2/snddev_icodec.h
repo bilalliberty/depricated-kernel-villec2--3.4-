@@ -49,6 +49,7 @@ struct q6v2audio_analog_ops {
 	void (*handset_enable)(int en);
 	void (*headset_speaker_enable)(int en);
 	void (*int_mic_enable)(int en);
+	void (*bt_sco_enable)(int en);
 	void (*back_mic_enable)(int en);
 	void (*ext_mic_enable)(int en);
 	void (*stereo_mic_enable)(int en);
@@ -59,8 +60,10 @@ struct q6v2audio_analog_ops {
 };
 
 struct q6v2audio_icodec_ops {
+	int (*support_aic3254) (void);
 	int (*support_adie) (void);
 	int (*is_msm_i2s_slave) (void);
+	int (*support_aic3254_use_mclk) (void);
 };
 
 struct aic3254_info {

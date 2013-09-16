@@ -35,6 +35,9 @@
 #define pr_err(fmt, ...) pr_aud_err(fmt, ##__VA_ARGS__)
 #endif
 
+static struct q6v2audio_ecodec_ops default_audio_ops;
+static struct q6v2audio_ecodec_ops *audio_ops = &default_audio_ops;
+
 struct snddev_ecodec_state {
 	struct snddev_ecodec_data *data;
 	u32 sample_rate;
@@ -45,7 +48,10 @@ struct snddev_ecodec_drv_state {
 	int ref_cnt;		
 	struct clk *ecodec_clk;
 };
-
+void htc_8x60_register_ecodec_ops(struct q6v2audio_ecodec_ops *ops)
+{
+	audio_ops = ops;
+}
 static struct snddev_ecodec_drv_state snddev_ecodec_drv;
 
 struct aux_pcm_state {
